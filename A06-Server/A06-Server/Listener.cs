@@ -22,7 +22,6 @@ namespace A06_Server
     internal class Listener
     {
         private TcpListener server;
-        private static bool stopListener = false;
         private static readonly List<clientHandler> users = new List<clientHandler>();
         //
         // The most of this code was extracted from the MSDN site:
@@ -78,7 +77,7 @@ namespace A06_Server
         // DESCRIPTION : This function is used to stop the server
         // PARAMETERS  : Nothing
         // RETURNS     : Nothing
-        internal void StopListener()
+        public internal void StopListener()
         {
             try
             {
@@ -104,8 +103,6 @@ namespace A06_Server
             // buffer for reading data
             Byte[] bytes = new Byte[1024];
             String data = null;
-
-            data = null;
 
             // get a stream object for reading and writing
             NetworkStream stream = client.GetStream();
@@ -192,7 +189,9 @@ namespace A06_Server
 
                     // send back a response
                     stream.Write(quitMsg, 0, quitMsg.Length);
-                    // Console.WriteLine("Sent: {0}", quit);
+                    Console.WriteLine("Sent: {0}", quit);
+                    Console.WriteLine("Sent: {0}", quit);
+                    Console.WriteLine("Sent: {0}", quit);
                 }
 
                 // quit protocol
@@ -248,6 +247,8 @@ namespace A06_Server
         // RETURNS     : Nothing
         private int UserGuess(string[] message)
         {
+            int unusedCode = 12345678;
+
             // set values from client message
             string user = message[1];
             string guess = message[2];
